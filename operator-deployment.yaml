@@ -31,6 +31,9 @@ spec:
           requests:
             cpu: 100m
             memory: 128Mi
+        envFrom:
+        - secretRef:
+            name: aws-credentials-external
 
 ---
 apiVersion: v1
@@ -49,7 +52,7 @@ rules:
   resources: ["deployments"]
   verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
 - apiGroups: [""]
-  resources: ["services"]
+  resources: ["services", "secrets"]
   verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
 
 ---
