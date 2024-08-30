@@ -1,0 +1,67 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: web-interface-operator-system
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-interface-operator
+  namespace: web-interface-operator-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web-interface-operator
+  template:
+    metadata:
+      labels:
+        app: web-interface-operator
+    spec:
+      serviceAccountName: web-interface-operator
+      containers:
+      - name: operator
+        image: seu-registro/web-interface-operator:v1
+        resources:
+          limits:
+            cpu: 100m
+            memory: 128Mi
+          requests:
+            cpu: 100m
+            memory: 128Mi
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: web-interface-operator
+  namespace: web-interface-operator-system
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: web-interface-operator-role
+rules:
+- apiGroups: ["apps"]
+  resources: ["deployments"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+- apiGroups: [""]
+  resources: ["services"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: web-interface-operator-rolebinding
+subjects:
+- kind: ServiceAccount
+  name: web-interface-operator
+  namespace: web-interface-operator-system
+roleRef:
+  kind: ClusterRole
+  name: web-interface-operator-role
+  apiGroup: rbac.authorization.k8s.io
