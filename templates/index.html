@@ -1,0 +1,69 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Natural Language to PromQL</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .promql-result {
+            white-space: pre-wrap;
+            word-break: break-word;
+            overflow-wrap: break-word;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
+    <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-2xl">
+        <div class="flex justify-center mb-6">
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" class="w-32">
+        </div>
+        <h1 class="text-2xl font-bold mb-4 text-center">Natural Language to PromQL</h1>
+        <div class="mb-4">
+            <textarea id="natural-language" class="w-full p-2 border rounded" rows="4" placeholder="Enter your natural language query here..."></textarea>
+        </div>
+        <button id="transform-btn" class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">Transform</button>
+        <div id="result" class="mt-4 hidden">
+            <h2 class="text-lg font-semibold mb-2">PromQL Result:</h2>
+            <pre id="promql-result" class="bg-gray-100 p-2 rounded promql-result"></pre>
+            <button id="copy-btn" class="mt-2 bg-green-500 text-white py-1 px-2 rounded hover:bg-green-600">Copy PromQL</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('transform-btn').addEventListener('click', async () => {
+            const query = document.getElementById('natural-language').value;
+            try {
+                const response = await fetch('/transform', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({query})
+                });
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                if (data.error) {
+                    throw new Error(data.error);
+                }
+                document.getElementById('promql-result').textContent = data.promql;
+                document.getElementById('result').classList.remove('hidden');
+            } catch (error) {
+                console.error('Error:', error);
+                alert(`An error occurred: ${error.message}`);
+            }
+        });
+
+        document.getElementById('copy-btn').addEventListener('click', () => {
+            const promql = document.getElementById('promql-result').textContent;
+            navigator.clipboard.writeText(promql).then(() => {
+                alert('PromQL copied to clipboard!');
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+                alert('Failed to copy to clipboard');
+            });
+        });
+    </script>
+</body>
+</html>

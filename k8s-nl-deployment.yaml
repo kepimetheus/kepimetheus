@@ -1,0 +1,36 @@
+# k8s-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nl-to-promql-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nl-to-promql-app
+  template:
+    metadata:
+      labels:
+        app: nl-to-promql-app
+    spec:
+      containers:
+      - name: nl-to-promql-app
+        image: your-docker-registry/nl-to-promql-app:latest
+        ports:
+        - containerPort: 5000
+        envFrom:
+        - secretRef:
+            name: aws-credentials-external  # This should match the name of the secret managed by your operator
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nl-to-promql-app
+spec:
+  selector:
+    app: nl-to-promql-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5000
+  type: LoadBalancer
