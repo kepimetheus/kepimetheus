@@ -1,11 +1,8 @@
 # docker-compose.yml
-version: '3'
 services:
   web:
     build: .
     ports:
-      - "5000:5000"
-    env_file:
-      - .env
+      - "8000:8000"
     volumes:
       - .:/app

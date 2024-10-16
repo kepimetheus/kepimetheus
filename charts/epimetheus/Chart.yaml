@@ -1,0 +1,15 @@
+apiVersion: v2
+name: epimetheus
+description: A Helm chart for Epimetheus on Kubernetes
+type: application
+sources:
+  - https://github.com/randomk/epimetheus
+version: 0.0.1
+appVersion: "0.0.1"
+kubeVersion: ">=1.20.0-0"
+
+dependencies:
+  - name: kube-prometheus-stack
+    version: "65.2.*"
+    repository: https://prometheus-community.github.io/helm-charts
+    condition: kubePrometheusStack.enabled
