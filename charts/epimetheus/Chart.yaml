@@ -8,6 +8,12 @@ version: 0.0.1
 appVersion: "0.0.1"
 kubeVersion: ">=1.20.0-0"
 
+maintainers:
+  - name: Rodrigo Melgar
+    email: rodrigomelgar@gmail.com
+  - name: Felipe Barbosa
+    email: lybrbarbosa@gmail.com
+
 dependencies:
   - name: kube-prometheus-stack
     version: "65.2.*"
