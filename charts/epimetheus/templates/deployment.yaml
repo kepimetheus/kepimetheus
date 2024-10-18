@@ -47,6 +47,11 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           {{- with .Values.volumeMounts }}
+          {{- if .Values.provider.secret.create  }}
+          envFrom:
+          - secretRef:
+              name: {{ .Values.provider.secret.name }}
+          {{- end }}
           volumeMounts:
             {{- toYaml . | nindent 12 }}
           {{- end }}

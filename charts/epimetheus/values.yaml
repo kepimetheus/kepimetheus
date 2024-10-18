@@ -129,6 +129,23 @@ tolerations: []
 # ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/
 affinity: {}
 
+provider:
+  name: awsBedrock
+  secret:
+    # -- If `true`, create a new `Secret` for provider access.
+    create: true
+    # -- Labels to add to the secret.
+    labels: {}
+    # -- Annotations to add to the secret.
+    annotations: {}
+    # -- Name to add to the secret.
+    name:
+    # -- String data to add to the secret.
+    stringData:
+      # AWS_ACCESS_KEY_ID: sua_access_key_aqui
+      # AWS_SECRET_ACCESS_KEY: sua_secret_key_aqui
+
+
 # -- Install kube prometheus stack using default values from https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/values.yaml
 kubePrometheusStack:
   enabled: true
