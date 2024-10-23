@@ -15,7 +15,7 @@ The Kubernetes operator in this project is responsible for:
 - Kubernetes cluster (version 1.16+)
 - kubectl configured to communicate with your cluster
 - AWS credentials with appropriate permissions to access Amazon Bedrock
-- Docker (for building the operator image, if necessary)
+- Docker (for building image, if necessary)
 
 ## Project Structure
 
