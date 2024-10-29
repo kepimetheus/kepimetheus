@@ -5,11 +5,11 @@
 replicaCount: 1
 
 image:
-  # -- Image repository for the `epimetheus` container.
-  repository: rodrigomelgar/epimetheus
-  # -- (string) Image tag for the `epimetheus` container, this will default to `.Chart.AppVersion` if not set.
+  # -- Image repository for the `kepimetheus` container.
+  repository: rodrigomelgar/kepimetheus
+  # -- (string) Image tag for the `kepimetheus` container, this will default to `.Chart.AppVersion` if not set.
   tag: ""
-  # -- Image pull policy for the `epimetheus` container.
+  # -- Image pull policy for the `kepimetheus` container.
   pullPolicy: IfNotPresent
 
 # This is for the secretes for pulling an image from a private repository more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
@@ -141,11 +141,10 @@ provider:
     # -- Name to add to the secret.
     name:
     # -- String data to add to the secret.
-    stringData:
-      # AWS_ACCESS_KEY_ID: sua_access_key_aqui
-      # AWS_SECRET_ACCESS_KEY: sua_secret_key_aqui
-
+    data:
+      AWS_ACCESS_KEY_ID: 
+      AWS_SECRET_ACCESS_KEY:
 
 # -- Install kube prometheus stack using default values from https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/values.yaml
 kubePrometheusStack:
-  enabled: true
+  enabled: false

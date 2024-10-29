@@ -10,16 +10,16 @@
 
 ## Installing the Chart
 
-Before you can install the chart you will need to add the `epimetheus` repo to [Helm](https://helm.sh/).
+Before you can install the chart you will need to add the `kepimetheus` repo to [Helm](https://helm.sh/).
 
 ```shell
-helm repo add epimetheus https://define-helm-repository
+helm repo add kkepimetheus https://define-helm-repository
 ```
 
 After you've installed the repo you can install the chart.
 
 ```shell
-helm upgrade --install {{ template "chart.name" . }} epimetheus/{{ template "chart.name" . }} --version {{ template "chart.version" . }}
+helm upgrade --install {{ template "chart.name" . }} kepimetheus/{{ template "chart.name" . }} --version {{ template "chart.version" . }}
 ```
 
 ## Providers

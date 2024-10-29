@@ -1,9 +1,9 @@
 apiVersion: v2
-name: epimetheus
-description: A Helm chart for Epimetheus on Kubernetes
+name: kepimetheus
+description: A Helm chart for kepimetheus on Kubernetes
 type: application
 sources:
-  - https://github.com/randomk/epimetheus
+  - https://github.com/randomk/kepimetheus
 version: 0.0.1
 appVersion: "0.0.1"
 kubeVersion: ">=1.20.0-0"

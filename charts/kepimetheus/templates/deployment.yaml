@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "epimetheus.fullname" . }}
+  name: {{ include "kepimetheus.fullname" . }}
   labels:
-    {{- include "epimetheus.labels" . | nindent 4 }}
+    {{- include "kepimetheus.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
   selector:
     matchLabels:
-      {{- include "epimetheus.selectorLabels" . | nindent 6 }}
+      {{- include "kepimetheus.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -18,7 +18,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "epimetheus.labels" . | nindent 8 }}
+        {{- include "kepimetheus.labels" . | nindent 8 }}
         {{- with .Values.podLabels }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
@@ -27,7 +27,7 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "epimetheus.serviceAccountName" . }}
+      serviceAccountName: {{ include "kepimetheus.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
@@ -49,7 +49,7 @@ spec:
           {{- if .Values.provider.secret.create  }}
           envFrom:
           - secretRef:
-              name: {{ include "epimetheus.secretName" . }}
+              name: {{ include "kepimetheus.secretName" . }}
           {{- end }}
           {{- with .Values.volumeMounts }}
           volumeMounts:

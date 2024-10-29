@@ -1,8 +1,8 @@
-# epimetheus
+# kepimetheus
 
 ![Version: 0.0.1](https://img.shields.io/badge/Version-0.0.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.0.1](https://img.shields.io/badge/AppVersion-0.0.1-informational?style=flat-square)
 
-A Helm chart for Epimetheus on Kubernetes
+A Helm chart for kepimetheus on Kubernetes
 
 ## Maintainers
 
@@ -13,20 +13,20 @@ A Helm chart for Epimetheus on Kubernetes
 
 ## Source Code
 
-* <https://github.com/randomk/epimetheus>
+* <https://github.com/randomk/kepimetheus>
 
 ## Installing the Chart
 
-Before you can install the chart you will need to add the `epimetheus` repo to [Helm](https://helm.sh/).
+Before you can install the chart you will need to add the `kepimetheus` repo to [Helm](https://helm.sh/).
 
 ```shell
-helm repo add epimetheus https://define-helm-repository
+helm repo add kepimetheus https://define-helm-repository
 ```
 
 After you've installed the repo you can install the chart.
 
 ```shell
-helm upgrade --install epimetheus epimetheus/epimetheus --version 0.0.1
+helm upgrade --install kepimetheus kepimetheus/kepimetheus --version 0.0.1
 ```
 
 ## Providers
@@ -54,7 +54,7 @@ Kubernetes: `>=1.20.0-0`
 | autoscaling.targetCPUUtilizationPercentage | int | `80` |  |
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"rodrigomelgar/epimetheus"` |  |
+| image.repository | string | `"rodrigomelgar/kepimetheus"` |  |
 | image.tag | string | `""` |  |
 | imagePullSecrets | list | `[]` |  |
 | ingress.annotations | object | `{}` |  |

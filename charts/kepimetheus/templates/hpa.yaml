@@ -2,14 +2,14 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: {{ include "epimetheus.fullname" . }}
+  name: {{ include "kepimetheus.fullname" . }}
   labels:
-    {{- include "epimetheus.labels" . | nindent 4 }}
+    {{- include "kepimetheus.labels" . | nindent 4 }}
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: {{ include "epimetheus.fullname" . }}
+    name: {{ include "kepimetheus.fullname" . }}
   minReplicas: {{ .Values.autoscaling.minReplicas }}
   maxReplicas: {{ .Values.autoscaling.maxReplicas }}
   metrics:
