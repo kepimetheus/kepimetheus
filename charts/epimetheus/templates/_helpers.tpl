@@ -65,9 +65,9 @@ Create the name of the service account to use
 Create the name of the secret to use
 */}}
 {{- define "epimetheus.secretName" -}}
-{{- if .Values.secret.create }}
-{{- default (include "epimetheus.fullname" .) .Values.secret.name }}
+{{- if .Values.provider.secret.create }}
+{{- default (include "epimetheus.fullname" .) .Values.provider.secret.name }}
 {{- else }}
-{{- default "default" .Values.secret.name }}
+{{- default "default" .Values.provider.secret.name }}
 {{- end }}
 {{- end }}
