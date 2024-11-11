@@ -6,7 +6,7 @@ replicaCount: 1
 
 image:
   # -- Image repository for the `kepimetheus` container.
-  repository: rodrigomelgar/kepimetheus
+  repository: rodrigomelgar/epimetheus
   # -- (string) Image tag for the `kepimetheus` container, this will default to `.Chart.AppVersion` if not set.
   tag: ""
   # -- Image pull policy for the `kepimetheus` container.
@@ -141,9 +141,9 @@ provider:
     # -- Name to add to the secret.
     name:
     # -- String data to add to the secret.
-    data:
+    stringData:
       AWS_ACCESS_KEY_ID: 
-      AWS_SECRET_ACCESS_KEY:
+      AWS_SECRET_ACCESS_KEY: 
 
 # -- Install kube prometheus stack using default values from https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/values.yaml
 kubePrometheusStack:
