@@ -6,7 +6,7 @@ replicaCount: 1
 
 image:
   # -- Image repository for the `kepimetheus` container.
-  repository: rodrigomelgar/epimetheus
+  repository: rodrigomelgar/kepimetheus
   # -- (string) Image tag for the `kepimetheus` container, this will default to `.Chart.AppVersion` if not set.
   tag: ""
   # -- Image pull policy for the `kepimetheus` container.
