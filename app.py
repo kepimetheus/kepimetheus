@@ -3,6 +3,7 @@ import os
 import logging
 import re
 from flask import Flask, render_template, request, jsonify, send_from_directory
+from flask_cors import CORS
 import boto3
 import json
 from dotenv import load_dotenv
@@ -18,6 +19,7 @@ if os.path.exists('.env'):
     load_dotenv()
 
 app = Flask(__name__, static_folder='static')
+CORS(app)
 
 # Serve static files
 @app.route('/static/<path:path>')
