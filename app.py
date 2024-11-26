@@ -73,7 +73,11 @@ def generate_promql(natural_language):
         if promql:
             promql = promql.group(1).strip()
         else:
-            promql = full_response.split('\n')[0].strip()  # Fallback to first line if no backticks
+            items = full_response.split('\n')
+            for item in items:
+                if item is not None and item != "":
+                    promql = item.strip()
+                    break
 
         return promql
     except Exception as e:
@@ -103,7 +107,11 @@ def validate_and_correct_promql(promql, natural_language):
         if corrected_promql:
             corrected_promql = corrected_promql.group(1).strip()
         else:
-            corrected_promql = full_response.split('\n')[0].strip()  # Fallback to first line if no backticks
+            items = full_response.split('\n')
+            for item in items:
+                if item is not None and item != "":
+                    corrected_promql = item.strip()
+                    break
 
         return corrected_promql
     except Exception as e:
