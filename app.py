@@ -128,8 +128,8 @@ def transform():
         logger.error('Bedrock client not initialized')
         return jsonify({'error': 'Bedrock client not initialized. Check your AWS credentials and region.'}), 500
 
-    natural_language = request.json['query']
-    logger.info(f"Received query: {natural_language}")
+    natural_language = request.json['question']
+    logger.info(f"Received question: {natural_language}")
     
     try:
         # First attempt to generate PromQL

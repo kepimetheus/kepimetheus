@@ -21,7 +21,7 @@
         </div>
         <h1 class="text-2xl font-bold mb-4 text-center">Natural Language to PromQL</h1>
         <div class="mb-4">
-            <textarea id="natural-language" class="w-full p-2 border rounded" rows="4" placeholder="Enter your natural language query here..."></textarea>
+            <textarea id="natural-language" class="w-full p-2 border rounded" rows="4" placeholder="Enter your natural language question here..."></textarea>
         </div>
         <button id="transform-btn" class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">Transform</button>
         <div id="result" class="mt-4 hidden">
@@ -33,12 +33,12 @@
 
     <script>
         document.getElementById('transform-btn').addEventListener('click', async () => {
-            const query = document.getElementById('natural-language').value;
+            const question = document.getElementById('natural-language').value;
             try {
                 const response = await fetch('/transform', {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({query})
+                    body: JSON.stringify({question})
                 });
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
